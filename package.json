@@ -1,0 +1,22 @@
+{
+  "name": "skyauth",
+  "version": "1.0.0",
+  "description": "Mean Auth for skypirates",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "jsonwebtoken": "*",
+    "bcryptjs": "*",
+    "cors": "*",
+    "body-parser": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "author": "Justin Bender",
+  "license": "ISC"
+}
