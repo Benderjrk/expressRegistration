@@ -9,12 +9,13 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 
 const appRoutes = [
-    { path: '', component: HomeComponent },
+    { path: '', component: HomeComponent,
+    pathMatch: 'full' },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'profile', component: ProfileComponent },
-    { path: '**', redirectTo: '/home'}
+    { path: '**', redirectTo: '/'}
 
 ];
 
