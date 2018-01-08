@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../services/validate.service';
+import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +17,10 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private validSrvc : ValidateService,
-    private flashSrvc : FlashMessagesService) { }
+    private flashSrvc : FlashMessagesService,
+    private authSrvc : AuthService,
+    private router : Router
+  ) { }
 
   ngOnInit() {
   }
@@ -26,7 +31,6 @@ export class RegisterComponent implements OnInit {
       email: this.email,
       password: this.password
     }
-    console.log(user);
 
     //required fields
     if(!this.validSrvc.validateRegister(user)){
@@ -38,9 +42,22 @@ export class RegisterComponent implements OnInit {
       return false;
     }
     if(!this.validSrvc.validatePassword(user.password)){
-      this.flashSrvc.show("Minimum eight characters, at least one letter, one number and one special character:", {cssClass: 'alert-danger', timeout:3000});
+      this.flashSrvc.show("Password needs a minimum eight characters, at least one letter, one number and one special character", {cssClass: 'alert-danger', timeout:3000});
       return false;
     }
+
+    // Register User
+
+    this.authSrvc.registerUser(user).subscribe(data => {
+      if(data.success){
+        this.flashSrvc.show("You are now registered and can login", {cssClass: 'alert-success', timeout:3000});
+        this.router.navigate(['/login']);
+      } else {
+        this.flashSrvc.show("Registration Failed", {cssClass: 'alert-danger', timeout:3000});
+        this.router.navigate(['/register']);
+
+      }
+    });
   }
 
 }

@@ -15,6 +15,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ValidateService } from './services/validate.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -35,7 +36,9 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ValidateService],
+  providers: [
+    ValidateService,
+    AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
