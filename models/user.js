@@ -12,7 +12,7 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    
+
   },
   username: {
     type: String,
@@ -24,6 +24,7 @@ const UserSchema = mongoose.Schema({
     required: true
   }
 });
+
 
 const User = module.exports = mongoose.model('User', UserSchema);
 
@@ -42,6 +43,7 @@ module.exports.addUser = function(newUser, callback) {
       if(err) throw err;
       newUser.password = hash;
       newUser.save(callback);
+
 
     });
   });

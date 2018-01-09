@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 
 const appRoutes = [
@@ -13,8 +14,8 @@ const appRoutes = [
     pathMatch: 'full' },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'dashboard', component: DashboardComponent },
-    { path: 'profile', component: ProfileComponent },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]  },
     { path: '**', redirectTo: '/'}
 
 ];
